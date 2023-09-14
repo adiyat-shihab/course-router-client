@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "title": "Mastering Algorithms",
+    "description": "Become a problem-solving expert by mastering fundamental algorithms and problem-solving techniques in this comprehensive course.",
+    "image": "https://i.ibb.co/NT7C3yZ/algorithm.png",
+    "price": 25000,
+    "credit": 4
+  },
+  {
+    "id": 2,
+    "title": "AWS Certified Solutions Architect",
+    "description": "Prepare for the AWS Certified Solutions Architect exam and gain expertise in Amazon Web Services cloud solutions and architecture.",
+    "image": "https://i.ibb.co/f9Xy27w/amazon-web-service.png",
+    "price": 35000,
+    "credit": 6
+  },
+  {
+    "id": 3,
+    "title": "C++ Programming Fundamentals",
+    "description": "Build a strong foundation in C++ programming and explore its applications in software development and beyond.",
+    "image": "https://i.ibb.co/2ZYs7yN/c-plus-plus.png",
+    "price": 10000,
+    "credit": 5
+  },
+  {
+    "id": 4,
+    "title": "C Programming for Beginners",
+    "description": "Start your programming journey with C and learn the basics of this versatile language for software development.",
+    "image": "https://i.ibb.co/8mCsRY6/c-programming.png",
+    "price": 15000,
+    "credit": 4
+  },
+  {
+    "id": 5,
+    "title": "Data Structures and Algorithms Masterclass",
+    "description": "Deep dive into data structures and algorithms, and become a skilled programmer with strong problem-solving capabilities.",
+    "image": "https://i.ibb.co/3S5NPp3/data-structure.png",
+    "price": 35000,
+    "credit": 5
+  },
+  {
+    "id": 6,
+    "title": "Mastering MySQL Database Management",
+    "description": "Unlock the power of SQL and MySQL database management with this comprehensive course for aspiring database administrators.",
+    "image": "https://i.ibb.co/RYhRCrN/mysql.png",
+    "price": 19000,
+    "credit": 4
+  },
+  {
+    "id": 7,
+    "title": "Problem-Solving Part",
+    "description": "Enhance your problem-solving skills with an array of engaging puzzles and challenges in this fun and interactive course.",
+    "image": "https://i.ibb.co/LryD2FT/puzzle.png",
+    "price": 23000,
+    "credit": 3
+  },
+  {
+    "id": 8,
+    "title": "Python Programming Mastery",
+    "description": "Become a Python programming expert and unleash the potential of this versatile language in various applications.",
+    "image": "https://i.ibb.co/yVKTVYN/python.png",
+    "price": 19000,
+    "credit": 5
+  },
+  {
+    "id": 9,
+    "title": "Software Engineering Principles",
+    "description": "Explore the principles and best practices of software engineering to build robust and scalable software systems.",
+    "image": "https://i.ibb.co/B4xX3j0/software-engineering.png",
+    "price": 23000,
+    "credit": 6
+  }
+]

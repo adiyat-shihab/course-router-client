@@ -7,6 +7,7 @@ function App() {
   const [dataForCart, setdataForCart] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [credit, setCredit] = useState(0);
 
   const handleCart = (dataCart) => {
     const { title, credit, price } = dataCart;
@@ -16,7 +17,7 @@ function App() {
     } else {
       setdataForCart([...dataForCart, title]);
     }
-
+    setCredit(credit);
     setTotalTime(totalTime + credit);
     setTotalPrice(totalPrice + price);
   };
@@ -31,6 +32,7 @@ function App() {
           title={dataForCart}
           totalTime={totalTime}
           totalPrice={totalPrice}
+          cardTime={credit}
         ></Cart>
       </div>
     </div>

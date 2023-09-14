@@ -1,25 +1,11 @@
-import { data } from "autoprefixer";
 import { useEffect, useState } from "react";
 
-export const Cart = ({ title, totalTime, totalPrice, cardTime }) => {
-  const [reamaining, setRemaining] = useState(20);
-  const handleTime = (time) => {
-    if (time < 0) {
-      return;
-    } else {
-      setRemaining(time);
-    }
-  };
-  useEffect(() => {
-    const time = reamaining - cardTime;
-    handleTime(time);
-    console.log(time);
-  }, [totalTime]);
+export const Cart = ({ title, totalTime, totalPrice, remaining }) => {
   return (
     <>
       <div className={"lg:w-[19.5rem] p-6 bg-white h-fit rounded-xl"}>
         <h1 className={"mb-4 text-[1.125rem] text-[#2F80ED] font-bold"}>
-          Credit Hour Remaining {reamaining} hr
+          Credit Hour Remaining {remaining} hr
         </h1>
         <hr />
         <h1 className={"mt-4 mb-[1.31rem] text-xl font-bold"}>Course Name</h1>

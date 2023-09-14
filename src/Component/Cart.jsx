@@ -1,11 +1,12 @@
 import { data } from "autoprefixer";
+import { useEffect, useState } from "react";
 
-export const Cart = ({ title, totalTime }) => {
+export const Cart = ({ title, totalTime, totalPrice }) => {
   return (
     <>
       <div className={"lg:w-[19.5rem] p-6 bg-white h-fit rounded-xl"}>
         <h1 className={"mb-4 text-[1.125rem] text-[#2F80ED] font-bold"}>
-          Credit Hour Remaining
+          Credit Hour Remaining hr
         </h1>
         <hr />
         <h1 className={"mt-4 mb-[1.31rem] text-xl font-bold"}>Course Name</h1>
@@ -21,7 +22,7 @@ export const Cart = ({ title, totalTime }) => {
           Total Credit Hour : {totalTime}
         </p>
         <hr />
-        <p className={"mt-4 font-semibold"}>Total Price : </p>
+        <p className={"mt-4 font-semibold"}>Total Price : {totalPrice} USD</p>
       </div>
     </>
   );

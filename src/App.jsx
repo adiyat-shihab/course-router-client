@@ -6,15 +6,19 @@ import { useState } from "react";
 function App() {
   const [dataForCart, setdataForCart] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const handleCart = (dataCart) => {
-    const { title, credit } = dataCart;
+    const { title, credit, price } = dataCart;
     const isAvailable = dataForCart.find((data) => title === data);
     if (isAvailable) {
       return;
     } else {
       setdataForCart([...dataForCart, title]);
     }
+
     setTotalTime(totalTime + credit);
+    setTotalPrice(totalPrice + price);
   };
   return (
     <div className={"bg-[#F3F3F3] pt-[3.13rem]"}>
@@ -23,7 +27,11 @@ function App() {
       </h1>
       <div className={"flex justify-center  "}>
         <Cards handleCart={handleCart}></Cards>
-        <Cart title={dataForCart} totalTime={totalTime}></Cart>
+        <Cart
+          title={dataForCart}
+          totalTime={totalTime}
+          totalPrice={totalPrice}
+        ></Cart>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export const Card = ({ data, handleCart }) => {
             {data.title}
           </h1>
 
-          <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+          <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200 h-[95.97px]">
             {data.description}
           </p>
           <div className={"flex justify-between mb-[1.62rem]"}>

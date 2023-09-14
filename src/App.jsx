@@ -2,6 +2,7 @@ import "./App.css";
 import { Cards } from "./Component/Cards.jsx";
 import { Cart } from "./Component/Cart.jsx";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
   const [dataForCart, setdataForCart] = useState([]);
@@ -14,10 +15,10 @@ function App() {
     const { title, credit, price } = dataCart;
     const isAvailable = dataForCart.find((data) => title === data);
     if (reamaining <= 0 || credit > reamaining) {
-      return;
+      return toast.error("Opps! You haven't enough Credit");
     } else {
       if (isAvailable) {
-        return;
+        return toast.success("Already Selected");
       } else {
         setdataForCart([...dataForCart, title]);
       }
@@ -52,6 +53,7 @@ function App() {
           remaining={reamaining}
         ></Cart>
       </div>
+      <Toaster />
     </div>
   );
 }

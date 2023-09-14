@@ -56,7 +56,7 @@ export const Card = ({ data, handleCart }) => {
                 />
               </svg>
               <p className={"text-[1rem] text-[#1c1b1b99]"}>
-                Credit: {data.credit}
+                Credit: {data.credit} hr
               </p>
             </div>
           </div>

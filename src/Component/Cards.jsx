@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { data } from "autoprefixer";
 import { Card } from "./Card.jsx";
 
-export const Cards = () => {
+export const Cards = ({ handleCart }) => {
   const [card, setCard] = useState([]);
+
   useEffect(() => {
     fetch("../../public/course.json")
       .then((data) => data.json())
@@ -14,7 +15,7 @@ export const Cards = () => {
     <div className={"px-[3.75rem]"}>
       <div className="grid grid-cols-3 gap-6 ">
         {card.map((data) => (
-          <Card data={data}></Card>
+          <Card data={data} handleCart={handleCart}></Card>
         ))}
       </div>
     </div>

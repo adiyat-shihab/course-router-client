@@ -1,4 +1,4 @@
-export const Card = ({ data }) => {
+export const Card = ({ data, handleCart }) => {
   return (
     <>
       <div className="lg:w-[19.5rem]   p-4 rounded-lg bg-white dark:bg-neutral-700">
@@ -65,6 +65,7 @@ export const Card = ({ data }) => {
             className={
               "w-full  bg-[#2F80ED] text-white rounded-[0.5rem] h-[2.5rem]"
             }
+            onClick={() => handleCart(data)}
           >
             Select
           </button>

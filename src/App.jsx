@@ -14,8 +14,10 @@ function App() {
   const handleCart = (dataCart) => {
     const { title, credit, price } = dataCart;
     const isAvailable = dataForCart.find((data) => title === data);
-    if (reamaining <= 0 || credit > reamaining) {
-      return toast.error("Opps! You haven't enough Credit");
+    if (totalTime === 20) {
+      return toast.error("You are reach 20 hour");
+    } else if (reamaining <= 0 || credit > reamaining) {
+      return toast.error("Opps! You haven't enough Credit ");
     } else {
       if (isAvailable) {
         return toast.success("Already Selected");

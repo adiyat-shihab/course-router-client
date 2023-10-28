@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { authContext } from "./AuthProvider.jsx";
 
 export const Register = () => {
+  const { SignUP } = useContext(authContext);
+  const [validation, setValidation] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const name = form.username.value;
+    console.log(email, password, name);
+    setValidation("");
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+      return setValidation(
+        "Password Must be 8 character's Including one number and letter ",
+      );
+    }
+  };
   return (
     <>
       <div className="h-screen md:flex">
@@ -23,7 +41,7 @@ export const Register = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
-          <form className="bg-white">
+          <form className="bg-white" onSubmit={handleSubmit}>
             <div className={"text-black font-bold ml-2 my-6 text-3xl "}>
               Sign up
             </div>
@@ -39,7 +57,7 @@ export const Register = () => {
               <input
                 className="pl-2 outline-none border-none"
                 type="text"
-                name=""
+                name="username"
                 id=""
                 placeholder="Full name"
               />
@@ -56,8 +74,8 @@ export const Register = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none"
-                type="text"
-                name=""
+                type="email"
+                name="email"
                 id=""
                 placeholder="Email Address"
               />
@@ -73,12 +91,19 @@ export const Register = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none"
-                type="text"
-                name=""
+                type="password"
+                name="password"
                 id=""
                 placeholder="Password"
               />
             </div>
+            {validation && (
+              <p
+                className={"text-red-500 text-xs flex max-w-[237px] flex-wrap"}
+              >
+                {validation}
+              </p>
+            )}
             <button
               type="submit"
               className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"

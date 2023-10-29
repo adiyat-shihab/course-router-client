@@ -1,6 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { authContext } from "./AuthProvider.jsx";
+import Swal from "sweetalert2";
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const { SignIn } = useContext(authContext);
+  const [validation, setValidation] = useState("");
+  const handleSign = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    SignIn(email, password)
+      .then(async () => {
+        await Swal.fire({ icon: "success", title: "Login Success" });
+        await navigate("/");
+      })
+      .catch((err) => setValidation("email and password doesn't match"));
+  };
   return (
     <>
       <div className="h-screen md:flex">
@@ -23,30 +41,13 @@ export const Login = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
         <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
-          <form className="bg-white">
+          <form className="bg-white" onSubmit={handleSign}>
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
               Hello Again!
             </h1>
             <p className="text-sm font-normal text-gray-600 mb-7">
               Welcome Back
             </p>
-            <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-              </svg>
-              <input
-                className="pl-2 outline-none border-none"
-                type="text"
-                name=""
-                id=""
-                placeholder="Full name"
-              />
-            </div>
 
             <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
               <svg
@@ -60,8 +61,8 @@ export const Login = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none"
-                type="text"
-                name=""
+                type="email"
+                name="email"
                 id=""
                 placeholder="Email Address"
               />
@@ -77,11 +78,14 @@ export const Login = () => {
               </svg>
               <input
                 className="pl-2 outline-none border-none"
-                type="text"
-                name=""
+                type="password"
+                name="password"
                 id=""
                 placeholder="Password"
               />
+            </div>
+            <div>
+              <p className={"text-xs text-red-500"}>{validation}</p>
             </div>
             <button
               type="submit"

@@ -2,11 +2,32 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { authContext } from "./AuthProvider.jsx";
 import Swal from "sweetalert2";
-
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+// eslint-disable-next-line no-undef
 export const Register = () => {
   const { SignUP } = useContext(authContext);
   const [validation, setValidation] = useState("");
   const navigate = useNavigate();
+
+  const mutation = useMutation({
+    mutationFn: async (formData) => {
+      try {
+        return axios.post("http://localhost:3000/addUser", formData);
+      } catch (error) {
+        setValidation("Registration failed. Please try again later.");
+        console.log(error);
+      }
+    },
+    onSuccess: async () => {
+      await Swal.fire({
+        title: "Register Successful",
+        icon: "success",
+      });
+      return navigate("/");
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,6 +35,8 @@ export const Register = () => {
     const password = form.password.value;
     const name = form.username.value;
     console.log(email, password, name);
+    const user = { name, email, password };
+
     setValidation("");
     if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
       return setValidation(
@@ -21,12 +44,9 @@ export const Register = () => {
       );
     } else {
       SignUP(email, password)
-        .then(async (res) => {
-          await Swal.fire({
-            icon: "success",
-            title: "Register Success",
-          });
-          await navigate("/");
+        .then(() => {
+          mutation.mutate(user);
+          console.log(mutation);
         })
         .catch((err) => {
           setValidation("email already in use");
@@ -34,8 +54,9 @@ export const Register = () => {
         });
     }
   };
+
   return (
-    <>
+    <div className={"relative"}>
       <div className="h-screen md:flex">
         <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
           <div>
@@ -134,6 +155,9 @@ export const Register = () => {
           </form>
         </div>
       </div>
-    </>
+      {mutation.isPending && (
+        <span className="loading loading-spinner loading-lg absolute top-[50%] right-[50%]"></span>
+      )}
+    </div>
   );
 };

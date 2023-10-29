@@ -7,6 +7,11 @@ import { Parent } from "./Parent.jsx";
 import { Login } from "./Component/Login.jsx";
 import { Register } from "./Component/Register.jsx";
 import { AuthProvider } from "./Component/AuthProvider.jsx";
+import Course from "./Component/Course.jsx";
+import { CourseAdd } from "./Component/Course Crud Operation/CourseAdd.jsx";
+import { CourseGet } from "./Component/Course Crud Operation/CourseGet.jsx";
+import { CourseDelete } from "./Component/Course Crud Operation/CourseDelete.jsx";
+import { CourseUpdate } from "./Component/Course Crud Operation/CourseUpdate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +29,28 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/course",
+        element: <Course />,
+        children: [
+          {
+            path: "/course",
+            element: <CourseGet />,
+          },
+          {
+            path: "/course/add",
+            element: <CourseAdd />,
+          },
+          {
+            path: "/course/delete",
+            element: <CourseDelete />,
+          },
+          {
+            path: "/course/update",
+            element: <CourseUpdate />,
+          },
+        ],
       },
     ],
   },

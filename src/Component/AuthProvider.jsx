@@ -4,7 +4,7 @@ import { createContext } from "react";
 export const authContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const SignUP = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const authValue = { SignUP };

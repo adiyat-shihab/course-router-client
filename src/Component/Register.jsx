@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { authContext } from "./AuthProvider.jsx";
+import Swal from "sweetalert2";
 
 export const Register = () => {
   const { SignUP } = useContext(authContext);
   const [validation, setValidation] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,6 +19,19 @@ export const Register = () => {
       return setValidation(
         "Password Must be 8 character's Including one number and letter ",
       );
+    } else {
+      SignUP(email, password)
+        .then(async (res) => {
+          await Swal.fire({
+            icon: "success",
+            title: "Register Success",
+          });
+          await navigate("/");
+        })
+        .catch((err) => {
+          setValidation("email already in use");
+          console.log(err.message);
+        });
     }
   };
   return (
@@ -108,7 +123,7 @@ export const Register = () => {
               type="submit"
               className="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
             >
-              Login
+              Register
             </button>
             <span className="text-sm ml-2  cursor-pointer">
               Already an user{" "}

@@ -1,6 +1,20 @@
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { authContext } from "./AuthProvider.jsx";
+import Swal from "sweetalert2";
 
 export const Navbar = () => {
+  const { user, SignOut } = useContext(authContext);
+  const handleSignOut = () => {
+    SignOut().then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "SignOut Success",
+      });
+    });
+  };
+
+  console.log(user);
   return (
     <>
       <div className="navbar bg-base-100">
@@ -63,9 +77,15 @@ export const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <NavLink className={"btn"} to={"/register"}>
-            Join
-          </NavLink>
+          {user ? (
+            <button className="btn" onClick={handleSignOut}>
+              Sign Out
+            </button>
+          ) : (
+            <NavLink className={"btn"} to={"/register"}>
+              Join
+            </NavLink>
+          )}
         </div>
       </div>
     </>

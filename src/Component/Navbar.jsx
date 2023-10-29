@@ -4,7 +4,7 @@ import { authContext } from "./AuthProvider.jsx";
 import Swal from "sweetalert2";
 
 export const Navbar = () => {
-  const { user, SignOut } = useContext(authContext);
+  const { user, SignOut, data } = useContext(authContext);
   const handleSignOut = () => {
     SignOut().then(() => {
       Swal.fire({
@@ -14,7 +14,6 @@ export const Navbar = () => {
     });
   };
 
-  console.log(user);
   return (
     <>
       <div className="navbar bg-base-100">

@@ -45,3 +45,6 @@ when course button click and get the credit time this state is get that time and
 ### reamaining : 
 
 this state is store remaining time and use the value for condition when remaining value is less than 0.
+
+
+implementing axios, tanstack query
